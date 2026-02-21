@@ -88,8 +88,7 @@ Returns:
 - structured `details`, including:
   - `searchPrompt` (rendered prompt used)
   - `as_of_period`, `as_of_year`, `model`
-  - parsed telemetry (tool uses/results, final stats)
-  - policy warnings and disallowed tool events
+  - parsed search telemetry summary and final stats
 
 ## Development
 

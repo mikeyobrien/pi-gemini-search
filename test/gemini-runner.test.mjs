@@ -63,7 +63,7 @@ test("parseGeminiStreamEvents extracts tool events and assistant text", () => {
   assert.equal(parsed.assistantText, "Hello world");
 });
 
-test("progress counters increment on tool events", () => {
+test("progress counters track search activity", () => {
   const counters = createProgressCounters();
 
   const searchEvent = {
@@ -81,21 +81,19 @@ test("progress counters increment on tool events", () => {
   updateProgressCountersFromEvent(nonWebToolEvent, counters);
 
   assert.equal(counters.searches, 1);
-  assert.equal(counters.otherToolCalls, 1);
-  assert.match(counters.lastAction, /tool:/i);
+  assert.match(counters.lastAction, /search:/i);
 });
 
-test("formatProgressStatus includes counters", () => {
+test("formatProgressStatus includes search counters", () => {
   const counters = createProgressCounters();
   counters.searches = 2;
-  counters.otherToolCalls = 1;
   counters.lastAction = "search: npm latest";
 
   const text = formatProgressStatus(counters, Date.now() - 1800);
 
   assert.match(text, /Running Gemini web search/);
   assert.match(text, /searches: 2/);
-  assert.match(text, /other tools: 1/);
+  assert.doesNotMatch(text, /other tools:/);
   assert.match(text, /last action: search: npm latest/);
 });
 
