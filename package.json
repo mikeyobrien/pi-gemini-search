@@ -1,0 +1,25 @@
+{
+  "name": "pi-gemini-search",
+  "version": "0.1.0",
+  "description": "Pi extension: Gemini CLI-powered web search tool with live progress and structured details",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "gemini",
+    "search"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/gemini-search/index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*",
+    "@sinclair/typebox": "*"
+  }
+}
